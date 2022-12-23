@@ -1,0 +1,26 @@
+.detailsContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: black;
+}
+
+.col {
+    max-width: 510px;
+    margin: 16px;
+    height: auto;
+    height: 528px;
+}
+
+.movieImage {
+    border-radius: 16px;
+}
+
+.movieDetails {
+    font-size: 1.2rem;
+    color: white;
+}
+
+.firstItem {
+    margin-top: 16px;
+}

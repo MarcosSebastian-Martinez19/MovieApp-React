@@ -1,20 +1,29 @@
-// import logo from "./logo.svg";
-import styles from "./App.module.css"
+import styles from "./App.module.css";
 import "./App.css";
 import React from "react";
-import { MoviesGrid } from "./MoviesGrid";
+// import ReactDOM from 'react-dom'
+
+// import { MoviesGrid } from "./Components/MoviesGrid";
+import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import { MoviesDetails } from "./Pages/MoviesDetails";
+import { LandingPage } from "./Pages/LandingPage";
 
 const App = () => {
     return (
-        <div>
+        <Router>
             <header>
-                <h1 className={styles.title}>Movies</h1>
+                <Link to="/">
+                    <h1 className={styles.title}>Movies</h1>
+                </Link>
             </header>
             <main>
-                <MoviesGrid />
+                <Routes>
+                    <Route path="/movies/:movieId" element={<MoviesDetails />} />
+                    <Route path="/" element={<LandingPage />} />
+                </Routes>
             </main>
-        </div>
-    )
-}
+        </Router>
+    );
+};
 
 export default App;
