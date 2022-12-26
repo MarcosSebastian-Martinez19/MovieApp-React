@@ -1,22 +1,29 @@
 import React, { useEffect } from "react";
-// import ReactDOM from 'react-dom'
+// import ReactDOM from 'react-dom';
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { Spinner } from "../Components/Spinner";
 import { get } from "../utils/HttpClient";
-import styles from "./MoviesDetails.module.css"
+import styles from "./MoviesDetails.module.css";
 
 export function MoviesDetails() {
     const { movieId } = useParams();
-    // console.log(movieId)
-    const [movie, setMovie] = useState(null)
-    useEffect( () => {
-        get("/movie/" + movieId).then((data) => {
-            setMovie(data)
-        })
-    }, [movieId])
+    const [ isLoading, setIsLoading ] = useState(true);
+    // console.log(movieId);
+    const [movie, setMovie] = useState(null);
 
-    if(!movie) {
-        return null;
+    useEffect( () => {
+        setIsLoading(true);
+        get("/movie/" + movieId).then((data) => {
+            setMovie(data);
+            setIsLoading(false);
+        })
+    }, [movieId]);
+
+    if(isLoading) {
+        return <div>
+            <Spinner />
+        </div>
     }
 
     const imageUrl = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
